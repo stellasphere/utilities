@@ -1,5 +1,5 @@
 var utilities = {
-  objectsToProperties: function(arrayObjects) {
+  arrayObjectsToProperties: function(arrayObjects) {
     var objectProperties = [];
     for(i in arrayObjects) {
       var object = arrayObjects[i];
