@@ -1,4 +1,12 @@
 var utilities = {
+  arraySwapPositions: function(array,position1,position2) {
+    var temporary1 = array[position1];
+    var temporary2 = array[position2];
+    var newArray = array;
+    newArray[position1] = temporary2;
+    newArray[position2] = temporary1;
+    return newArray
+  },
   arrayObjectsToArrays: function(arrayObjects) {
     var objectProperties = [];
     for(i in arrayObjects) {
