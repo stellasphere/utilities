@@ -1,4 +1,13 @@
 var utilities = {
+  formToObject: function(formid) {
+    var inputs = document.querySelectorAll(`#${formid} > input`);
+    var results = {}
+    inputs.forEach(function(input){
+      if(input.type == "submit") return
+      results[input.name || input.id] = input.value
+    })
+    return results
+  },
   arraySwapPositions: function(array,position1,position2) {
     var temporary1 = array[position1];
     var temporary2 = array[position2];
