@@ -1,6 +1,6 @@
 var utilities = {
-  formToObject: function(formid) {
-    var inputs = document.querySelectorAll(`#${formid} > input`);
+  inputsToObject: function(selector) {
+    var inputs = document.querySelectorAll(selector);
     var results = {}
     inputs.forEach(function(input){
       if(input.type == "submit") return
