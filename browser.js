@@ -3,8 +3,13 @@ var utilities = {
     var inputs = document.querySelectorAll(selector);
     var results = {}
     inputs.forEach(function(input){
-      if(input.type == "submit") return
-      results[input.name || input.id] = input.value
+      if(input.type == "submit") {
+        return
+      } else if(input.type == "checkbox") {
+        input.checked == "on" ? input.value = true : input.value = false;
+      } else {
+        results[input.name || input.id] = input.value
+      }
     })
     return results
   },
