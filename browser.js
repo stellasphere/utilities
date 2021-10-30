@@ -6,10 +6,13 @@ var utilities = {
     ms -= minutes*60000;
     var seconds = Math.floor(ms/1000);
     if(hours > 0) {
+      if(minutes < 10) minutes = `0${minutes}`
       return `${hours}:${minutes}`
     } else if(minutes > 0) {
+      if(seconds < 10) seconds = `0${seconds}`
       return `${minutes}:${seconds}`
     } else if(seconds > 0) {
+      if(seconds < 10) seconds = `0${seconds}`
       return `0:${seconds}`
     } else {
       return `0:00`
