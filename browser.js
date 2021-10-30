@@ -1,4 +1,20 @@
 var utilities = {
+  millisecondsToRelativeTime: function(ms) {
+    var hours = Math.floor(ms/3600000);
+    ms -= hours*3600000;
+    var minutes = Math.floor(ms/60000);
+    ms -= minutes*60000;
+    var seconds = Math.floor(ms/1000);
+    if(hours > 0) {
+      return `${hours}:${minutes}`
+    } else if(minutes > 0) {
+      return `${minutes}:${seconds}`
+    } else if(seconds > 0) {
+      return `0:${seconds}`
+    } else {
+      return `0:00`
+    }
+  },
   inputsToObject: function(selector) {
     var inputs = document.querySelectorAll(selector);
     var results = {}
@@ -6,7 +22,7 @@ var utilities = {
       if(input.type == "submit") {
         return
       } else if(input.type == "checkbox") {
-        input.checked == "on" ? input.value = true : input.value = false;
+        results[input.name || input.id] = input.checked.toString();
       } else {
         results[input.name || input.id] = input.value
       }
