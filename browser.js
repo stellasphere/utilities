@@ -1,18 +1,19 @@
-var utilities = {
+var utilities = {  
   millisecondsToRelativeTime: function(ms) {
     var hours = Math.floor(ms/3600000);
     ms -= hours*3600000;
     var minutes = Math.floor(ms/60000);
     ms -= minutes*60000;
     var seconds = Math.floor(ms/1000);
+
+    if(minutes < 10) minutes = `0${minutes}`
+    if(seconds < 10) seconds = `0${seconds}`
+
     if(hours > 0) {
-      if(minutes < 10) minutes = `0${minutes}`
-      return `${hours}:${minutes}`
+      return `${hours}:${minutes}:${seconds}`
     } else if(minutes > 0) {
-      if(seconds < 10) seconds = `0${seconds}`
       return `${minutes}:${seconds}`
     } else if(seconds > 0) {
-      if(seconds < 10) seconds = `0${seconds}`
       return `0:${seconds}`
     } else {
       return `0:00`

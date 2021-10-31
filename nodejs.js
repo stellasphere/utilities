@@ -5,8 +5,12 @@ module.exports = {
     var minutes = Math.floor(ms/60000);
     ms -= minutes*60000;
     var seconds = Math.floor(ms/1000);
+
+    if(minutes < 10) minutes = `0${minutes}`
+    if(seconds < 10) seconds = `0${seconds}`
+
     if(hours > 0) {
-      return `${hours}:${minutes}`
+      return `${hours}:${minutes}:${seconds}`
     } else if(minutes > 0) {
       return `${minutes}:${seconds}`
     } else if(seconds > 0) {
