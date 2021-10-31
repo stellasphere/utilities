@@ -1,4 +1,7 @@
 var utilities = {  
+  arrayRemoveDuplicates: function(array) {
+    return [...new Set(array)];
+  },
   millisecondsToRelativeTime: function(ms) {
     var hours = Math.floor(ms/3600000);
     ms -= hours*3600000;
