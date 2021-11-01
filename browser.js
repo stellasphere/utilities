@@ -1,4 +1,56 @@
-var utilities = {  
+var utilities = {
+  timestampToWrittenTime: function(ms) {
+    var date = (new Date(ms)).toString().split(" ")
+    var timearray = date[4].split(":")
+    var hours = timearray > 12? timearray[0]-12 : timearray[0]
+    var minutes = timearray[1]
+    var tod = timearray > 12? "PM" : "AM"
+    return `${hours}:${minutes} ${tod}`
+  },
+  millisecondsToRelativeWrittenTime: function(target,capitalized) {
+    const now = Date.now();
+    var difference = target - now;
+
+    function plural(unit) {
+      if(Math.round(difference/unit)>1) {
+        return "s"
+      } else {
+        return ""
+      }
+    }
+    var past = false;
+    if (difference < 0) {
+      past = true
+      difference = Math.abs(difference)
+    }
+    var writtendifference = "Beyond Comprehension"
+    if(difference < 1000) {
+      writtendifference = `Less Than A Second`;
+    } else {
+      if(difference < 60000) {
+        writtendifference = `${Math.round(difference/1000)} Second${plural(1000)}`;
+      } else {
+        if(difference < 3600000) {
+          writtendifference = `${Math.round(difference/60000)} Minute${plural(60000)}`;
+        } else {
+          if(difference < 86400000) {
+            writtendifference = `About ${Math.round(difference/3600000)} Hour${plural(3600000)}`;
+          } else {
+            if(difference < 604800000) {
+              writtendifference = `About ${Math.round(difference/86400000)} Day${plural(86400000)}`;
+            } else {
+              if(difference < 2629800000) {
+                writtendifference = `About ${Math.round(difference/604800000)} Week${plural(604800000)}`;
+              } else {
+                writtendifference = `About ${Math.round(difference/2629800000)} Month${plural(2629800000)}`;
+              }
+            }
+          }
+        }
+      }
+    }
+    return capitalized === true?`${writtendifference}${past ? ` In The Past`:""}`:`${writtendifference}${past ? ` In The Past`:""}`.toLocaleLowerCase();
+  },
   arrayRemoveDuplicates: function(array) {
     return [...new Set(array)];
   },
