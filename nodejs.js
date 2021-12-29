@@ -55,8 +55,8 @@ module.exports = {
     return [...new Set(array)];
   },
   millisecondsToRelativeTime: function(ms) {
-    var hours = Math.floor(ms/3600000);
-    ms -= hours*3600000;
+    var hours = Math.floor(ms/360000);
+    ms -= hours*360000;
     var minutes = Math.floor(ms/60000);
     ms -= minutes*60000;
     var seconds = Math.floor(ms/1000);
