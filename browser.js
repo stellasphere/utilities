@@ -55,8 +55,8 @@ var utilities = {
     return [...new Set(array)];
   },
   millisecondsToRelativeTime: function(ms) {
-    var hours = Math.floor(ms/360000);
-    ms -= hours*360000;
+    var hours = Math.floor(ms/3.6e+6);
+    ms -= hours*3.6e+6;
     var minutes = Math.floor(ms/60000);
     ms -= minutes*60000;
     var seconds = Math.floor(ms/1000);
