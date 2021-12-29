@@ -7,9 +7,10 @@ module.exports = {
     var tod = timearray > 12? "PM" : "AM"
     return `${hours}:${minutes} ${tod}`
   },
-  millisecondsToRelativeWrittenTime: function(target) {
+  millisecondsToRelativeWrittenTime: function(target,capitalized,about) {
     const now = Date.now();
     var difference = target - now;
+    var aboutText = (about===true?"About ":"") || ""
 
     function plural(unit) {
       if(Math.round(difference/unit)>1) {
@@ -34,22 +35,22 @@ module.exports = {
           writtendifference = `${Math.round(difference/60000)} Minute${plural(60000)}`;
         } else {
           if(difference < 86400000) {
-            writtendifference = `About ${Math.round(difference/3600000)} Hour${plural(3600000)}`;
+            writtendifference = `${aboutText}${Math.round(difference/3600000)} Hour${plural(3600000)}`;
           } else {
             if(difference < 604800000) {
-              writtendifference = `About ${Math.round(difference/86400000)} Day${plural(86400000)}`;
+              writtendifference = `${aboutText}${Math.round(difference/86400000)} Day${plural(86400000)}`;
             } else {
               if(difference < 2629800000) {
-                writtendifference = `About ${Math.round(difference/604800000)} Week${plural(604800000)}`;
+                writtendifference = `${aboutText}${Math.round(difference/604800000)} Week${plural(604800000)}`;
               } else {
-                writtendifference = `About ${Math.round(difference/2629800000)} Month${plural(2629800000)}`;
+                writtendifference = `${aboutText}${Math.round(difference/2629800000)} Month${plural(2629800000)}`;
               }
             }
           }
         }
       }
     }
-    return `${writtendifference}${past ? ` In The Past`:""}`
+    return capitalized === true?`${writtendifference}${past ? ` In The Past`:""}`:`${writtendifference}${past ? ` In The Past`:""}`.toLocaleLowerCase();
   },
   arrayRemoveDuplicates: function(array) {
     return [...new Set(array)];
