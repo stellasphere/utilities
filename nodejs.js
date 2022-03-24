@@ -119,6 +119,14 @@ module.exports = {
     }
     return objectProperties
   },
+  arrayObjectsToObject: function(arrayObjects,primaryKey) {
+    var object = {};
+    for(i in arrayObjects) {
+      var arrayObject = arrayObjects[i]
+      object[arrayObject[primaryKey]] = arrayObject
+    }
+    return object
+  },
   keyValueObjectToArrayObjects: function(keyValueObject) {
     var keys = Object.keys(keyValueObject);
     var objects = [];

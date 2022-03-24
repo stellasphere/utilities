@@ -75,20 +75,6 @@ var utilities = {
       return `0:00`
     }
   },
-  inputsToObject: function(selector) {
-    var inputs = document.querySelectorAll(selector);
-    var results = {}
-    inputs.forEach(function(input){
-      if(input.type == "submit") {
-        return
-      } else if(input.type == "checkbox") {
-        results[input.name || input.id] = input.checked.toString();
-      } else {
-        results[input.name || input.id] = input.value
-      }
-    })
-    return results
-  },
   arraySwapPositions: function(array,position1,position2) {
     var temporary1 = array[position1];
     var temporary2 = array[position2];
@@ -132,6 +118,14 @@ var utilities = {
       }
     }
     return objectProperties
+  },
+  arrayObjectsToObject: function(arrayObjects,primaryKey) {
+    var object = {};
+    for(i in arrayObjects) {
+      var arrayObject = arrayObjects[i]
+      object[arrayObject[primaryKey]] = arrayObject
+    }
+    return object
   },
   keyValueObjectToArrayObjects: function(keyValueObject) {
     var keys = Object.keys(keyValueObject);
